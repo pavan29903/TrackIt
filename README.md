@@ -33,3 +33,52 @@
    git clone https://github.com/your-username/trackit.git
    cd trackit/backend
     ```
+2. Install dependencies:
+
+    ```bash
+    npm install express mongoose bcryptjs jsonwebtoken cors dotenv socket.io
+    ```
+3. Start the backend server:
+
+    ```bash
+    npm run dev
+    ```
+### frontend Setup
+
+1. Open a new terminal and navigate to the frontend folder:
+
+    ```bash 
+    cd ../frontend
+    ```
+2. Install dependencies:
+
+    ```bash
+    npm install next react react-dom axios
+    ```
+3. Run the frontend:
+
+    ```bash
+    npm run dev
+    ```
+## 3. Features
+
+### Vendor
+
+- Register and login with vendor role. 
+- Automatically assigned dummy orders on login.
+- View list of assigned orders. 
+- Assign orders to delivery partners.
+
+### Delivery Personnel
+
+- Login with delivery role
+- View assigned orders.
+- Update order status (Pending, Delivered).
+- Share live location during delivery.
+
+### Customer
+
+- Track order status using order ID.
+- View live location of delivery partner on the map.
+- Receive real-time updates on delivery progress.
+
