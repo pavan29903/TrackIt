@@ -29,42 +29,40 @@ export default function CustomerTracking() {
   };
 
   useEffect(() => {
-  if (!tracking) return;
+    if (!tracking) return;
 
-  const handleLocation = (data: { lat: number; lng: number }) => {
-    setPosition([data.lat, data.lng]);
-  };
+    const handleLocation = (data: { lat: number; lng: number }) => {
+      setPosition([data.lat, data.lng]);
+    };
 
-  socket.on('location', handleLocation);
+    socket.on('location', handleLocation);
 
-  return () => {
-    socket.off('location', handleLocation); 
-  };
-}, [tracking]);
-
+    return () => {
+      socket.off('location', handleLocation);
+    };
+  }, [tracking]);
 
   return (
-    <div className="p-6 max-w-xl mx-auto">
-      <h1 className="text-2xl font-bold mb-4">Track Your Order</h1>
+    <div className="p-6 max-w-md mx-auto">
+      <h2 className="text-2xl font-bold mb-6 text-center text-blue-700">Track Your Order</h2>
 
-      <div className="flex items-center gap-4 mb-6">
-        <input
-          type="text"
-          placeholder="Enter Order ID"
-          value={orderId}
-          onChange={(e) => setOrderId(e.target.value)}
-          className="border px-3 py-2 rounded w-full"
-        />
-        <button
-          className="bg-purple-600 text-white px-4 py-2 rounded hover:bg-purple-700"
-          onClick={startTracking}
-        >
-          Start
-        </button>
-      </div>
+      <input
+        type="text"
+        placeholder="Enter Order ID"
+        value={orderId}
+        onChange={(e) => setOrderId(e.target.value)}
+        className="block w-full mb-4 border border-purple-300 px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-purple-500"
+      />
+
+      <button
+        className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition"
+        onClick={startTracking}
+      >
+        Start Tracking
+      </button>
 
       {position && (
-        <div className="h-[400px] rounded overflow-hidden border">
+        <div className="mt-6 h-96 rounded border border-purple-300 overflow-hidden">
           <MapContainer
             center={position}
             zoom={15}

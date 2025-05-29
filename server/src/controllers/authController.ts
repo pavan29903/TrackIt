@@ -75,3 +75,14 @@ await Order.insertMany(randomOrders);
 
   res.status(200).json({ user, token });
 };
+
+export const deliveryBoy = async (req: any, res: any ) =>{
+    try {
+    console.log("Fetching delivery boys");
+    const deliveryBoys = await User.find({ role: 'delivery' }).select('_id name');
+    res.json(deliveryBoys);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Server error' });
+  }
+}

@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.login = exports.register = void 0;
+exports.deliveryBoy = exports.login = exports.register = void 0;
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const bcryptjs_1 = __importDefault(require("bcryptjs"));
 const User_1 = __importDefault(require("../models/User"));
@@ -74,3 +74,15 @@ const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     res.status(200).json({ user, token });
 });
 exports.login = login;
+const deliveryBoy = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        console.log("Fetching delivery boys");
+        const deliveryBoys = yield User_1.default.find({ role: 'delivery' }).select('_id name');
+        res.json(deliveryBoys);
+    }
+    catch (err) {
+        console.error(err);
+        res.status(500).json({ message: 'Server error' });
+    }
+});
+exports.deliveryBoy = deliveryBoy;
