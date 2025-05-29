@@ -1,13 +1,9 @@
-// src/index.ts
 import express from 'express';
 import http from 'http';
 import cors from 'cors';
 import { Server } from 'socket.io';
-// import dotenv from 'dotenv';
 import connectDB from './config/db';
-// import { PORT } from './config/env';
 
-// dotenv.config();
 connectDB();
 
 const app = express();
@@ -21,20 +17,18 @@ const io = new Server(server, {
 app.use(cors());
 app.use(express.json());
 
-// Routes
 import authRoutes from './routes/authRoutes';
 import orderRoutes from './routes/orderRoutes';
 
 app.use('/api/auth', authRoutes);
 app.use('/api/orders', orderRoutes);
 
-// WebSocket logic
 io.on('connection', (socket) => {
   console.log('Client connected:', socket.id);
 
   socket.on('locationUpdate', (data) => {
     console.log('Location received:', data);
-    socket.broadcast.emit('location', data); // send to customers
+    socket.broadcast.emit('location', data);
   });
 
   socket.on('disconnect', () => {

@@ -6,7 +6,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const orderController_1 = require("../controllers/orderController");
 const authMiddleware_1 = require("../middlewares/authMiddleware");
-// import { protect } from '../middlewares/authMiddleware';
 const router = express_1.default.Router();
 router.post('/', authMiddleware_1.protect, orderController_1.createOrder);
 router.post('/assign', authMiddleware_1.protect, orderController_1.assignDeliveryPartner);
