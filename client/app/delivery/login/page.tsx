@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 export default function DeliveryLogin() {
   const [email, setEmail] = useState('');
@@ -49,6 +50,10 @@ export default function DeliveryLogin() {
         >
           Login
         </button>
+        <p className="text-sm mt-4 text-center text-blue-600">
+          Don’t have an account?{' '}
+          <Link href="/delivery/register" className="underline font-semibold">Register</Link>
+        </p>
       </div>
     </div>
   );

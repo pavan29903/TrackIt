@@ -105,7 +105,7 @@ export default function VendorDashboard() {
                     onClick={() => assignPartner(order._id, boy._id)}
                     className="bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700 transition"
                   >
-                    {boy.name} (ID: {boy._id})
+                    {boy.name}
                   </button>
                 ))}
               </div>
