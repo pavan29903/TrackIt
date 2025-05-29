@@ -64,3 +64,19 @@ export const trackOrder = async (req: Request, res: Response) => {
     res.status(500).json({ error: 'Track failed' });
   }
 };
+export const markDelivered = async (req: any, res: any) => {
+  try {
+    const { orderId } = req.body;
+    const order = await Order.findOneAndUpdate(
+      { _id: orderId, deliveryPartnerId: req.userId },
+      { status: 'delivered' },
+      { new: true }
+    );
+
+    if (!order) return res.status(404).json({ message: 'Order not found' });
+    res.status(200).json({ message: 'Order marked as delivered', order });
+  } catch (error) {
+    res.status(500).json({ message: 'Failed to update order status' });
+  }
+};
+

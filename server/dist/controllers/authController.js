@@ -17,6 +17,7 @@ const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const bcryptjs_1 = __importDefault(require("bcryptjs"));
 const User_1 = __importDefault(require("../models/User"));
 const env_1 = require("../config/env");
+const Order_1 = __importDefault(require("../models/Order"));
 const generateToken = (id) => {
     return jsonwebtoken_1.default.sign({ id }, env_1.JWT_SECRET, {
         expiresIn: '7d',
@@ -35,6 +36,16 @@ const register = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         role,
     });
     const token = generateToken(user._id.toString());
+    if (user.role === 'vendor') {
+        const sampleNames = ['Alice', 'Bob', 'Charlie', 'Diana', 'Eve', 'Frank', 'Grace'];
+        const sampleStreets = ['Maple Ave', 'Sunset Blvd', 'Broadway', 'King St', 'Elm Rd', 'Main St'];
+        const randomOrders = Array.from({ length: 2 }).map(() => ({
+            vendorId: user._id,
+            customerName: sampleNames[Math.floor(Math.random() * sampleNames.length)],
+            customerAddress: `${Math.floor(Math.random() * 999)} ${sampleStreets[Math.floor(Math.random() * sampleStreets.length)]}`,
+        }));
+        yield Order_1.default.insertMany(randomOrders);
+    }
     res.status(201).json({ user, token });
 });
 exports.register = register;
@@ -47,6 +58,19 @@ const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     if (!isMatch)
         return res.status(400).json({ message: 'Invalid credentials' });
     const token = generateToken(user._id.toString());
+    if (user.role === 'vendor') {
+        const existingOrders = yield Order_1.default.find({ vendorId: user._id });
+        if (existingOrders.length === 0) {
+            const sampleNames = ['Alice', 'Bob', 'Charlie', 'Diana', 'Eve', 'Frank', 'Grace'];
+            const sampleStreets = ['Maple Ave', 'Sunset Blvd', 'Broadway', 'King St', 'Elm Rd', 'Main St'];
+            const randomOrders = Array.from({ length: 2 }).map(() => ({
+                vendorId: user._id,
+                customerName: sampleNames[Math.floor(Math.random() * sampleNames.length)],
+                customerAddress: `${Math.floor(Math.random() * 999)} ${sampleStreets[Math.floor(Math.random() * sampleStreets.length)]}`,
+            }));
+            yield Order_1.default.insertMany(randomOrders);
+        }
+    }
     res.status(200).json({ user, token });
 });
 exports.login = login;

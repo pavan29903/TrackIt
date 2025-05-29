@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.trackOrder = exports.updateLocation = exports.getDeliveryOrders = exports.getVendorOrders = exports.assignDeliveryPartner = exports.createOrder = void 0;
+exports.markDelivered = exports.trackOrder = exports.updateLocation = exports.getDeliveryOrders = exports.getVendorOrders = exports.assignDeliveryPartner = exports.createOrder = void 0;
 const Order_1 = __importDefault(require("../models/Order"));
 const createOrder = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
@@ -79,3 +79,16 @@ const trackOrder = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
     }
 });
 exports.trackOrder = trackOrder;
+const markDelivered = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { orderId } = req.body;
+        const order = yield Order_1.default.findOneAndUpdate({ _id: orderId, deliveryPartnerId: req.userId }, { status: 'delivered' }, { new: true });
+        if (!order)
+            return res.status(404).json({ message: 'Order not found' });
+        res.status(200).json({ message: 'Order marked as delivered', order });
+    }
+    catch (error) {
+        res.status(500).json({ message: 'Failed to update order status' });
+    }
+});
+exports.markDelivered = markDelivered;

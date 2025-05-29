@@ -1,7 +1,9 @@
 'use client';
+
 import { useState } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 export default function VendorRegister() {
   const [name, setName] = useState('');
@@ -23,35 +25,46 @@ export default function VendorRegister() {
   };
 
   return (
-    <div className="p-6 max-w-md mx-auto">
-      <h2 className="text-2xl font-bold mb-4">Vendor Registration</h2>
-      <input
-        type="text"
-        placeholder="Name"
-        className="block w-full mb-2 border px-3 py-2 rounded"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-      />
-      <input
-        type="email"
-        placeholder="Email"
-        className="block w-full mb-2 border px-3 py-2 rounded"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <input
-        type="password"
-        placeholder="Password"
-        className="block w-full mb-4 border px-3 py-2 rounded"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <button
-        className="w-full bg-green-600 text-white py-2 rounded hover:bg-green-700"
-        onClick={handleRegister}
-      >
-        Register
-      </button>
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-100 to-white px-4">
+      <div className="bg-white shadow-xl rounded-2xl p-8 w-full max-w-md">
+        <h2 className="text-2xl font-bold text-blue-700 mb-6 text-center">Vendor Registration</h2>
+
+        <input
+          type="text"
+          placeholder="Name"
+          className="mb-4 w-full border border-blue-300 px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
+
+        <input
+          type="email"
+          placeholder="Email"
+          className="mb-4 w-full border border-blue-300 px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+
+        <input
+          type="password"
+          placeholder="Password"
+          className="mb-6 w-full border border-blue-300 px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+
+        <button
+          className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition"
+          onClick={handleRegister}
+        >
+          Register
+        </button>
+
+        <p className="text-sm mt-4 text-center text-blue-600">
+          Already have an account?{' '}
+          <Link href="/vendor/login" className="underline font-semibold">Login</Link>
+        </p>
+      </div>
     </div>
   );
 }

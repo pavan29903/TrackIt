@@ -5,7 +5,8 @@ import {
   getVendorOrders,
   getDeliveryOrders,
   updateLocation,
-  trackOrder
+  trackOrder,
+  markDelivered
 } from '../controllers/orderController';
 import { protect } from '../middlewares/authMiddleware';
 
@@ -15,6 +16,7 @@ router.post('/', protect, createOrder);
 router.post('/assign', protect, assignDeliveryPartner);
 router.get('/vendor', protect, getVendorOrders);
 router.get('/delivery', protect, getDeliveryOrders);
+router.post('/delivered', protect, markDelivered);
 router.post('/location', protect, updateLocation);
 router.get('/track/:orderId', trackOrder);
 
