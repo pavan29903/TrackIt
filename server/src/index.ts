@@ -36,7 +36,7 @@ io.on('connection', (socket) => {
   });
 });
 
-const USEDPORT = 3000;
-server.listen(3000, () => {
+const USEDPORT = 5000;
+server.listen(5000, () => {
   console.log(`Server running on port ${USEDPORT}`);
 });

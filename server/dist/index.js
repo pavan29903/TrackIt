@@ -32,7 +32,7 @@ io.on('connection', (socket) => {
         console.log('Client disconnected:', socket.id);
     });
 });
-const USEDPORT = 3000;
-server.listen(3000, () => {
+const USEDPORT = 5000;
+server.listen(5000, () => {
     console.log(`Server running on port ${USEDPORT}`);
 });
