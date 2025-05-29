@@ -30,13 +30,14 @@
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/your-username/trackit.git
+   git clone https://github.com/pavan29903/TrackIt.git
    cd trackit/backend
     ```
 2. Install dependencies:
 
     ```bash
-    npm install express mongoose bcryptjs jsonwebtoken cors dotenv socket.io
+    npm install express mongoose bcryptjs jsonwebtoken cors dotenv socket.io typescript
+    npm install -D @types/express @types/mongoose @types/bcryptjs @types/jsonwebtoken @types/cors @types/node
     ```
 3. Start the backend server:
 
@@ -53,7 +54,9 @@
 2. Install dependencies:
 
     ```bash
-    npm install next react react-dom axios
+    npm install next react react-dom typescript leaflet socket.io-client typescript
+    npm install -D @types/react @types/react-dom @types/node
+
     ```
 3. Run the frontend:
 
