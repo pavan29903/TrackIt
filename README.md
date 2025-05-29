@@ -31,7 +31,7 @@
 
    ```bash
    git clone https://github.com/pavan29903/TrackIt.git
-   cd trackit/backend
+   cd trackit/server
     ```
 2. Install dependencies:
 
@@ -50,7 +50,7 @@
 1. Open a new terminal and navigate to the frontend folder:
 
     ```bash 
-    cd ../frontend
+    cd ../client
     ```
 2. Install dependencies:
 
