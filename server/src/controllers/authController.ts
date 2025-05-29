@@ -29,16 +29,17 @@ export const register = async (req: any, res: any) => {
   const token = generateToken(user._id.toString());
 
     if (user.role === 'vendor') {
-    const sampleNames = ['Alice', 'Bob', 'Charlie', 'Diana', 'Eve', 'Frank', 'Grace'];
-const sampleStreets = ['Maple Ave', 'Sunset Blvd', 'Broadway', 'King St', 'Elm Rd', 'Main St'];
 
-const randomOrders = Array.from({ length: 2 }).map(() => ({
-  vendorId: user._id,
-  customerName: sampleNames[Math.floor(Math.random() * sampleNames.length)],
-  customerAddress: `${Math.floor(Math.random() * 999)} ${sampleStreets[Math.floor(Math.random() * sampleStreets.length)]}`,
-}));
-
-await Order.insertMany(randomOrders);
+await Order.insertMany([{
+    vendorId: user._id,
+    customerName: 'Alice',
+    customerAddress: '123 Wonderland',
+  },
+  {
+    vendorId: user._id,
+    customerName: 'Bob',
+    customerAddress: '456 Builder St',
+  },]);
 
   }
 
@@ -59,16 +60,16 @@ export const login = async (req: any, res: any) => {
   if (user.role === 'vendor') {
     const existingOrders = await Order.find({ vendorId: user._id });
     if (existingOrders.length === 0) {
-      const sampleNames = ['Alice', 'Bob', 'Charlie', 'Diana', 'Eve', 'Frank', 'Grace'];
-const sampleStreets = ['Maple Ave', 'Sunset Blvd', 'Broadway', 'King St', 'Elm Rd', 'Main St'];
-
-const randomOrders = Array.from({ length: 2 }).map(() => ({
-  vendorId: user._id,
-  customerName: sampleNames[Math.floor(Math.random() * sampleNames.length)],
-  customerAddress: `${Math.floor(Math.random() * 999)} ${sampleStreets[Math.floor(Math.random() * sampleStreets.length)]}`,
-}));
-
-await Order.insertMany(randomOrders);
+await Order.insertMany([{
+    vendorId: user._id,
+    customerName: 'Alice',
+    customerAddress: '123 Wonderland',
+  },
+  {
+    vendorId: user._id,
+    customerName: 'Bob',
+    customerAddress: '456 Builder St',
+  },]);
 
     }
   }

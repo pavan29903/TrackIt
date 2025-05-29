@@ -52,7 +52,7 @@ export default function DeliveryDashboard() {
       lng += 0.0001;
       socket.emit('locationUpdate', { lat, lng });
 
-      axios.post('http://localhost:3000/api/orders/location', { lat, lng }, {
+      axios.post('http://localhost:5000/api/orders/location', { lat, lng }, {
         headers: { Authorization: `Bearer ${token}` }
       });
     }, 3000);
@@ -60,12 +60,12 @@ export default function DeliveryDashboard() {
     setTimeout(() => {
       clearInterval(interval);
       setTrackingId(null);
-    }, 30000); // Auto-stop after 30s
+    }, 30000); 
   };
 
   const markDelivered = async (orderId: string) => {
     try {
-      await axios.post('http://localhost:3000/api/orders/delivered', {
+      await axios.post('http://localhost:5000/api/orders/delivered', {
         orderId,
       }, {
         headers: { Authorization: `Bearer ${token}` }

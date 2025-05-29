@@ -11,7 +11,7 @@
 - **Database:** MongoDB for storing users, orders, and delivery statuses.  
 - **Real-time:** WebSocket (Socket.IO) for live location updates and order status synchronization.  
 - **Authentication:** JWT tokens stored in `localStorage` for session management.  
-- **Map Integration:** leaflet or similar for displaying live tracking on the customer side.
+- **Map Integration:** Google Maps API or similar for displaying live tracking on the customer side.
 
 ---
 
@@ -36,7 +36,8 @@
 2. Install dependencies:
 
     ```bash
-    npm install express mongoose bcryptjs jsonwebtoken cors dotenv socket.io typescript
+    npm install express mongoose bcryptjs jsonwebtoken cors dotenv socket.io typescript @react-google-maps/api
+
     npm install -D @types/express @types/mongoose @types/bcryptjs @types/jsonwebtoken @types/cors @types/node
     ```
 3. Start the backend server:

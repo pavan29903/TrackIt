@@ -4,6 +4,7 @@ import cors from 'cors';
 import { Server } from 'socket.io';
 import connectDB from './config/db';
 
+
 connectDB();
 
 const app = express();
