@@ -18,8 +18,8 @@ export default function DeliveryBoysList({ onAssign }: DeliveryBoysListProps) {
       try {
         const res = await axios.get<DeliveryBoy[]>('http://localhost:5000/api/users/deliveryboys');
         setDeliveryBoys(res.data);
-      } catch (error) {
-        console.error('Failed to fetch delivery boys', error);
+      } catch {
+        console.error('Failed to fetch delivery boys');
       }
     }
     fetchDeliveryBoys();
