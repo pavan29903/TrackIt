@@ -18,7 +18,7 @@ export default function DeliveryLogin() {
       localStorage.setItem('token', res.data.token);
       alert('Login successful');
       router.push('/delivery');
-    } catch(_) {
+    } catch(error) {
       alert('Login failed');
     }
   };

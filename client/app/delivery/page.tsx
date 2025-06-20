@@ -24,7 +24,7 @@ export default function DeliveryDashboard() {
       try {
         const payload = JSON.parse(atob(t.split('.')[1]));
         setUserName(payload.name || 'Delivery Partner');
-      } catch(_) {
+      } catch(error) {
         setUserName('Delivery Partner');
       }
       fetchOrders(t);
@@ -37,7 +37,7 @@ export default function DeliveryDashboard() {
         headers: { Authorization: `Bearer ${t}` },
       });
       setOrders(res.data);
-    } catch (err) {
+    } catch (error) {
       console.error('Failed to fetch orders');
     }
   };
@@ -72,7 +72,7 @@ export default function DeliveryDashboard() {
       });
       alert('Order marked as delivered!');
       fetchOrders(token);
-    } catch(_) {
+    } catch(error) {
       alert('Failed to update status');
     }
   };

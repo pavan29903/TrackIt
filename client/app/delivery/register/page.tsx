@@ -21,7 +21,7 @@ export default function DeliveryRegister() {
       localStorage.setItem('token', res.data.token);
       alert('Registered successfully!');
       router.push('/delivery');
-    } catch(_) {
+    } catch(error) {
       alert('Registration failed');
     }
   };
