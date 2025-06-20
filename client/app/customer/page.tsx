@@ -28,7 +28,7 @@ export default function CustomerTracking() {
       } else {
         alert('Tracking info not available for this order.');
       }
-    } catch {
+    } catch(_) {
       alert('Invalid order ID or network error');
     }
   };

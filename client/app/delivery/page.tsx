@@ -24,7 +24,7 @@ export default function DeliveryDashboard() {
       try {
         const payload = JSON.parse(atob(t.split('.')[1]));
         setUserName(payload.name || 'Delivery Partner');
-      } catch {
+      } catch(_) {
         setUserName('Delivery Partner');
       }
       fetchOrders(t);
@@ -72,7 +72,7 @@ export default function DeliveryDashboard() {
       });
       alert('Order marked as delivered!');
       fetchOrders(token);
-    } catch {
+    } catch(_) {
       alert('Failed to update status');
     }
   };
