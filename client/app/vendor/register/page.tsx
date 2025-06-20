@@ -19,7 +19,7 @@ export default function VendorRegister() {
       localStorage.setItem('token', res.data.token);
       alert('Registered successfully!');
       router.push('/vendor');
-    } catch {
+    } catch{
       alert('Registration failed');
     }
   };
