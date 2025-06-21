@@ -19,6 +19,7 @@ export default function VendorRegister() {
       localStorage.setItem('token', res.data.token);
       alert('Registered successfully!');
       router.push('/vendor');
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (_) {
       alert('Registration failed');
     }
