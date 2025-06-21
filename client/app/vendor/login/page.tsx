@@ -18,7 +18,7 @@ export default function VendorLogin() {
       localStorage.setItem('token', res.data.token);
       alert('Login successful');
       router.push('/vendor');
-    } catch{
+    } catch (_) {
       alert('Login failed');
     }
   };
